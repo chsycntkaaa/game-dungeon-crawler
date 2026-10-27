@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dungeon Crawler RPG</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 font-sans text-slate-100 flex items-center justify-center min-h-screen p-2 sm:p-4 select-none">
+
+  <!-- Main Container -->
+  <div class="w-full max-w-2xl bg-slate-900 rounded-3xl shadow-2xl border-4 border-slate-800 overflow-hidden flex flex-col">
+    
+    <!-- Header / Stats Bar -->
+    <header class="bg-slate-900/90 border-b border-slate-800 p-4 grid grid-cols-4 gap-2 text-center text-xs font-bold">
+      <div class="bg-slate-800 p-2 rounded-xl border border-slate-700/50 text-red-400">
+        <i class="fa-solid fa-heart mr-1"></i> HP: <span id="ui-hp">100</span>/<span id="ui-max-hp">100</span>
+      </div>
+      <div class="bg-slate-800 p-2 rounded-xl border border-slate-700/50 text-orange-400">
+        <i class="fa-solid fa-sword mr-1"></i> ATK: <span id="ui-atk">15</span>
+      </div>
+      <div class="bg-slate-800 p-2 rounded-xl border border-slate-700/50 text-amber-400">
+        <i class="fa-solid fa-coins mr-1"></i> Gold: <span id="ui-gold">0</span>
+      </div>
+      <div class="bg-slate-800 p-2 rounded-xl border border-slate-700/50 text-cyan-400">
+        <i class="fa-solid fa-stairs mr-1"></i> Floor: <span id="ui-floor">1</span>
+      </div>
+    </header>
+
+    <!-- Game Viewport (Canvas) -->
+    <div class="relative bg-slate-950 flex justify-center items-center overflow-hidden py-4">
+      <canvas id="gameCanvas" width="480" height="480" class="block bg-slate-950 rounded-xl shadow-inner border border-slate-800"></canvas>
+      
+      <!-- Overlay Game Over / Win -->
+      <div id="game-overlay" class="absolute inset-0 bg-slate-950/90 backdrop-blur flex flex-col items-center justify-center hidden z-20">
+        <h2 id="overlay-title" class="text-3xl font-black text-red-500 mb-2">GAME OVER</h2>
+        <p id="overlay-msg" class="text-slate-400 mb-6 text-center px-4">Karakter Anda gugur di dalam dungeon...</p>
+        <button id="btn-restart" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-3 rounded-xl transition active:scale-95">
+          Coba Lagi <i class="fa-solid fa-rotate-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Message Log Console -->
+    <div class="bg-slate-950 px-4 py-2 border-t border-slate-800 h-20 overflow-y-auto flex flex-col-reverse">
+      <div id="game-log" class="text-xs text-slate-400 space-y-1 font-mono">
+        [Sistem] Selamat datang di Dungeon Crawler! Gunakan Tombol Arah / WASD untuk bergerak.
+      </div>
+    </div>
+
+    <!-- On-screen Controls (Mobile / Tablet Friendly) -->
+    <footer class="bg-slate-900 border-t border-slate-800 p-3 flex flex-col items-center gap-1">
+      <button id="btn-up" class="control-btn"><i class="fa-solid fa-chevron-up"></i></button>
+      <div class="flex gap-12">
+        <button id="btn-left" class="control-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-right" class="control-btn"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <button id="btn-down" class="control-btn"><i class="fa-solid fa-chevron-down"></i></button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
